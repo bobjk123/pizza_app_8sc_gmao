@@ -1,21 +1,21 @@
 class MyUserEntity {
-  final String userId;
-  final String name;
-  final String email;
+  String userId;
+  String email;
+  String name;
   bool hasActiveCart;
 
   MyUserEntity({
     required this.userId,
-    required this.name,
     required this.email,
+    required this.name,
     required this.hasActiveCart,
   });
 
   Map<String, Object?> toDocument() {
     return {
       'userId': userId,
-      'name': name,
       'email': email,
+      'name': name,
       'hasActiveCart': hasActiveCart,
     };
   }
@@ -23,8 +23,8 @@ class MyUserEntity {
   static MyUserEntity fromDocument(Map<String, dynamic> doc) {
     return MyUserEntity(
       userId: doc['userId'],
-      name: doc['name'],
       email: doc['email'],
+      name: doc['name'],
       hasActiveCart: doc['hasActiveCart'],
     );
   }
