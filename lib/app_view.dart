@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pizza_app_8sc_gmao/blocs/authentication_bloc/authentication_bloc.dart';
-import 'package:pizza_app_8sc_gmao/screens/auth/views/welcome_screen.dart';
-import 'package:pizza_app_8sc_gmao/screens/home/views/home_screen.dart';
+import 'blocs/authentication_bloc/authentication_bloc.dart';
+import 'screens/auth/views/welcome_screen.dart';
+import 'screens/home/views/home_screen.dart';
 
 class MyAppView extends StatelessWidget {
   const MyAppView({super.key});
@@ -23,9 +23,9 @@ class MyAppView extends StatelessWidget {
       home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
         builder: ((context, state) {
           if (state.status == AuthenticationStatus.authenticated) {
-            return HomeScreen();
+            return const HomeScreen();
           } else {
-            return WelcomeScreen();
+            return const WelcomeScreen();
           }
         }),
       ),

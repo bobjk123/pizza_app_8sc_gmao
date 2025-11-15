@@ -1,4 +1,4 @@
-name: pizzz_repository
+name: pizza_repository
 description: The Repo that handles pizzas.
 publish to: none
 version: 0.0.1

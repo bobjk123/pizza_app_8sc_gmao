@@ -25,11 +25,11 @@ class AuthenticationBloc
         emit(const AuthenticationState.unauthenticated());
       }
     });
+  }
 
-    // ignore: unused_element
-    Future<void> close() {
-      _userSubscription.cancel();
-      return super.close();
-    }
+  @override
+  Future<void> close() {
+    _userSubscription.cancel();
+    return super.close();
   }
 }

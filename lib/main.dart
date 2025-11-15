@@ -1,10 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pizza_app_8sc_gmao/app.dart';
-import 'package:pizza_app_8sc_gmao/firebase_options.dart';
-import 'package:pizza_app_8sc_gmao/simple_bloc_observer.dart';
 import 'package:user_repository/user_repository.dart';
+import 'app.dart';
+import 'firebase_options.dart';
+import 'simple_bloc_observer.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
