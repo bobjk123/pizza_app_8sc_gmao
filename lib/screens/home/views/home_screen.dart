@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pizza_app_8sc_gmao/screens/home/views/details_screen.dart';
+import '../../../components/local_image.dart';
 
 import '../../auth/blocs/sign_in_bloc/sign_in_bloc.dart';
+import '../blocs/get_pizza_bloc/get_pizza_bloc.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -65,7 +68,11 @@ class HomeScreen extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Image.network(state.pizzas[i].picture),
+                            LocalImage(state.pizzas[i].picture,
+                                fit: BoxFit.cover,
+                                width: double.infinity,
+                                height:
+                                    MediaQuery.of(context).size.width * 0.5),
                             Padding(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 12.0),
@@ -95,7 +102,8 @@ class HomeScreen extends StatelessWidget {
                                   const SizedBox(width: 8),
                                   Container(
                                     decoration: BoxDecoration(
-                                        color: Colors.green.withValues(alpha: 0.2),
+                                        color:
+                                            Colors.green.withValues(alpha: 0.2),
                                         borderRadius:
                                             BorderRadius.circular(30)),
                                     child: Padding(

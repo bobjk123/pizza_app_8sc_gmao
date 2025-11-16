@@ -28,7 +28,12 @@ class DetailsScreen extends StatelessWidget {
                     BoxShadow(
                         color: Colors.grey, offset: Offset(3, 3), blurRadius: 5)
                   ],
-                  image: DecorationImage(image: NetworkImage(pizza.picture))),
+                  image: DecorationImage(
+                      image: AssetImage(
+                          // derive asset file name from pizza.picture
+                          Uri.parse(pizza.picture).pathSegments.isNotEmpty
+                              ? 'assets/images/${Uri.parse(pizza.picture).pathSegments.last}'
+                              : 'assets/images/${pizza.picture}'))),
             ),
             const SizedBox(
               height: 30,

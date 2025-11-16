@@ -6,15 +6,27 @@ import 'package:pizza_repository/pizza_repository.dart';
 class FirebasePizzaRepo implements PizzaRepo {
   final pizzaCollection = FirebaseFirestore.instance.collection('pizzas');
 
+  @override
   Future<List<Pizza>> getPizzas() async {
     try {
-      return await pizzaCollection
-        .get()
-        .then((value) => value.docs.map((e) => 
-          Pizza.fromEntity(PizzaEntity.fromDocument(e.data()))
-        ).toList());
+      final snapshot = await pizzaCollection.get();
+      return snapshot.docs
+          .map((e) => Pizza.fromEntity(PizzaEntity.fromDocument(e.data())))
+          .toList();
     } catch (e) {
-      log(e.toString());
+      // Provide clearer logging for Firestore permission issues and fail
+      // gracefully for consumers (return empty list) while still surfacing
+      // other unexpected errors.
+      if (e is FirebaseException) {
+        log('Firestore FirebaseException in getPizzas: code=${e.code}, message=${e.message}');
+        if (e.code == 'permission-denied') {
+          // Return an empty list instead of throwing so UI can show a
+          // friendly message and continue running.
+          return <Pizza>[];
+        }
+      }
+
+      log('Unexpected error in getPizzas: $e');
       rethrow;
     }
   }
