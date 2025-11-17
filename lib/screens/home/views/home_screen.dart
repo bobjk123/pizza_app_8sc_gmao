@@ -12,27 +12,46 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    // Determine number of columns based on available width for responsiveness
+    final int crossAxisCount = width < 600 ? 2 : (width < 1024 ? 3 : 4);
+    // Adjust child aspect ratio to keep tiles looking good on larger screens
+    final double childAspectRatio =
+        width < 600 ? 9 / 16 : (width < 1024 ? 10 / 14 : 12 / 14);
+    // derive AppBar and icon sizes from width
+    final double appBarTitleSize = width < 600 ? 30 : (width < 1024 ? 36 : 42);
+    final double appBarIconSize = width < 600 ? 24 : (width < 1024 ? 26 : 30);
+
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.surface,
         title: Row(
           children: [
-            Image.asset('assets/8.png', scale: 14),
+            Image.asset(
+              'assets/images/8.png',
+              height: appBarIconSize + 4,
+            ),
             const SizedBox(width: 8),
-            const Text(
+            Text(
               'PIZZA',
-              style: TextStyle(fontWeight: FontWeight.w900, fontSize: 30),
+              style: TextStyle(
+                  fontWeight: FontWeight.w900, fontSize: appBarTitleSize),
             )
           ],
         ),
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(CupertinoIcons.cart)),
           IconButton(
-              onPressed: () {
-                context.read<SignInBloc>().add(SignOutRequired());
-              },
-              icon: const Icon(CupertinoIcons.arrow_right_to_line)),
+            onPressed: () {},
+            icon: Icon(CupertinoIcons.cart, size: appBarIconSize),
+          ),
+          IconButton(
+            onPressed: () {
+              context.read<SignInBloc>().add(SignOutRequired());
+            },
+            icon:
+                Icon(CupertinoIcons.arrow_right_to_line, size: appBarIconSize),
+          ),
         ],
       ),
       body: Padding(
@@ -41,11 +60,11 @@ class HomeScreen extends StatelessWidget {
           builder: (context, state) {
             if (state is GetPizzaSuccess) {
               return GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: crossAxisCount,
                       crossAxisSpacing: 16,
                       mainAxisSpacing: 16,
-                      childAspectRatio: 9 / 16),
+                      childAspectRatio: childAspectRatio),
                   itemCount: state.pizzas.length,
                   itemBuilder: (context, int i) {
                     return Material(
@@ -68,11 +87,19 @@ class HomeScreen extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            LocalImage(state.pizzas[i].picture,
-                                fit: BoxFit.cover,
-                                width: double.infinity,
-                                height:
-                                    MediaQuery.of(context).size.width * 0.5),
+                            // Use AspectRatio so image scales nicely across devices
+                            ClipRRect(
+                              borderRadius: const BorderRadius.vertical(
+                                  top: Radius.circular(20)),
+                              child: AspectRatio(
+                                aspectRatio: 12 / 9,
+                                child: LocalImage(
+                                  state.pizzas[i].picture,
+                                  fit: BoxFit.cover,
+                                  width: double.infinity,
+                                ),
+                              ),
+                            ),
                             Padding(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 12.0),
@@ -135,6 +162,8 @@ class HomeScreen extends StatelessWidget {
                                   const EdgeInsets.symmetric(horizontal: 12.0),
                               child: Text(
                                 state.pizzas[i].name,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
                                 style: const TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.bold),
                               ),
@@ -144,8 +173,10 @@ class HomeScreen extends StatelessWidget {
                                   const EdgeInsets.symmetric(horizontal: 12.0),
                               child: Text(
                                 state.pizzas[i].description,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
-                                  fontSize: 10,
+                                  fontSize: 12,
                                   color: Colors.grey.shade500,
                                 ),
                               ),

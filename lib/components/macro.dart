@@ -5,11 +5,15 @@ class MyMacroWidget extends StatelessWidget {
   final String title;
   final int value;
   final IconData icon;
+  final double? iconSize;
+  final double? fontSize;
 
   const MyMacroWidget(
       {required this.title,
       required this.value,
       required this.icon,
+      this.iconSize,
+      this.fontSize,
       super.key});
 
   @override
@@ -32,11 +36,12 @@ class MyMacroWidget extends StatelessWidget {
             FaIcon(
               icon,
               color: Colors.redAccent,
+              size: iconSize ?? 18,
             ),
-            const SizedBox(height: 4),
+            SizedBox(height: iconSize != null ? (iconSize! * 0.2) : 4),
             Text(
               title == "Calories" ? '$value $title' : '${value}g $title',
-              style: const TextStyle(fontSize: 10),
+              style: TextStyle(fontSize: fontSize ?? 10),
             )
           ],
         ),
