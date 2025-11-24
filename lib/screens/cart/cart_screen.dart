@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pizza_repository/pizza_repository.dart';
-import '../../home/views/details_screen.dart';
 import '../../../blocs/cart/cart_cubit.dart';
+import '../home/views/details_screen.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
