@@ -12,6 +12,26 @@ A small but polished pizza delivery demo built with Flutter. This repository con
 
 --
 
+--
+
+## 🗓️ Recent changes (25 Nov 2025)
+
+- Reverted the two most recent commits that were pushed to `main` today. The reverts were created and pushed as commits:
+	- `f796cf0` — Revert "fix: repair HomeScreen widget tree and prevent bottom bar overflow; improve responsiveness"
+	- `fee07ab` — Revert "feat: add CartCubit, CartScreen and cart summary bar; wire add-to-cart"
+
+- As a result of the reverts, the experimental cart feature and the recent HomeScreen edits were removed from `main` (files such as `lib/blocs/cart/*` and `lib/screens/cart/cart_screen.dart` were deleted by the revert).
+
+- New requirements documentation was added today:
+	- `REQUIREMENTS.md` (Spanish)
+	- `REQUIREMENTS_en.md` (English)
+
+- I ran `flutter analyze` after making and reverting changes; the analyzer reported no issues at the time of the last run.
+
+Notes & next steps:
+- If you want to reintroduce the cart feature or specific HomeScreen fixes, I recommend recreating them on a feature branch and testing there before merging to `main`.
+- If you want, I can commit this README update and push it to `origin/main`, or I can create a dedicated changelog file instead. Tell me which you prefer.
+
 ## 🧩 Main Widgets & UI Concepts
 
 - **GridDelegate (Responsive Grid):** `SliverGridDelegateWithFixedCrossAxisCount` is adapted at runtime using screen width to choose number of columns; tile `childAspectRatio` is computed dynamically so cards keep consistent visual proportions across devices.
