@@ -5,7 +5,6 @@ import 'screens/auth/blocs/sign_in_bloc/sign_in_bloc.dart';
 import 'screens/auth/views/welcome_screen.dart';
 import 'screens/home/views/home_screen.dart';
 import 'screens/home/blocs/get_pizza_bloc/get_pizza_bloc.dart';
-import 'blocs/cart/cart_cubit.dart';
 import 'package:pizza_repository/pizza_repository.dart';
 
 class MyAppView extends StatelessWidget {
@@ -38,9 +37,6 @@ class MyAppView extends StatelessWidget {
                 BlocProvider<GetPizzaBloc>(
                   create: (context) =>
                       GetPizzaBloc(FirebasePizzaRepo())..add(GetPizza()),
-                ),
-                BlocProvider(
-                  create: (_) => CartCubit(),
                 ),
               ],
               child: const HomeScreen(),

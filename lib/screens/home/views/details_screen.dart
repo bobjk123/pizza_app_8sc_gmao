@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pizza_repository/pizza_repository.dart';
 import '../../../components/macro.dart';
-import '../../../blocs/cart/cart_cubit.dart';
 
 class DetailsScreen extends StatelessWidget {
   final Pizza pizza;
@@ -56,16 +54,7 @@ class DetailsScreen extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.add_shopping_cart,
                 size: appBarIconSize, color: Colors.black),
-            onPressed: () {
-              try {
-                context.read<CartCubit>().addToCart(pizza);
-                ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Added to cart')));
-              } catch (_) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Added to cart')));
-              }
-            },
+            onPressed: () {},
             tooltip: 'Add to cart',
           ),
         ],

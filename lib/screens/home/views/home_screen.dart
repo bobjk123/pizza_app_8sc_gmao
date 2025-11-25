@@ -2,9 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pizza_app_8sc_gmao/screens/home/views/details_screen.dart';
-import 'package:pizza_app_8sc_gmao/screens/cart/cart_screen.dart';
 import '../../../components/local_image.dart';
-import '../../../blocs/cart/cart_cubit.dart';
 
 import '../../auth/blocs/sign_in_bloc/sign_in_bloc.dart';
 import '../blocs/get_pizza_bloc/get_pizza_bloc.dart';
@@ -44,10 +42,7 @@ class HomeScreen extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            onPressed: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (_) => const CartScreen()));
-            },
+            onPressed: () {},
             icon: Icon(CupertinoIcons.cart, size: appBarIconSize),
           ),
           IconButton(
@@ -219,11 +214,7 @@ class HomeScreen extends StatelessWidget {
                                       ],
                                     ),
                                     IconButton(
-                                        onPressed: () {
-                                          context
-                                              .read<CartCubit>()
-                                              .addToCart(state.pizzas[i]);
-                                        },
+                                        onPressed: () {},
                                         icon: const Icon(
                                             CupertinoIcons.add_circled_solid))
                                   ],
@@ -243,65 +234,6 @@ class HomeScreen extends StatelessWidget {
               );
             }
           },
-        ),
-      ),
-      bottomNavigationBar: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-          child: BlocBuilder<CartCubit, CartState>(builder: (context, state) {
-            final totalItems = state.totalItems;
-            final totalPrice = state.totalPrice;
-            return GestureDetector(
-              onTap: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (_) => const CartScreen()));
-              },
-              child: Container(
-                height: 64,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
-                  boxShadow: const [
-                    BoxShadow(color: Colors.black12, blurRadius: 8)
-                  ],
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                              '$totalItems items | \$${totalPrice.toStringAsFixed(2)}',
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.bold)),
-                          const Text('Delivery Charges Included',
-                              style:
-                                  TextStyle(fontSize: 12, color: Colors.grey)),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (_) => const CartScreen()));
-                        },
-                        style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8))),
-                        child: const Text('View Cart'),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            );
-          }),
         ),
       ),
     );
