@@ -138,12 +138,3 @@ Design & tutorial credit:
 - For production, enable Firestore rules and limit API keys usage.
 - Consider moving secrets to environment variables or a secrets manager for CI/CD.
 
---
-
-If you'd like, I can:
-
-- add a `docs/demo.gif` placeholder and record a short demo (I can run the app and capture web screenshots), or
-- prepare a `CONTRIBUTING.md` with instructions for handling secrets in teams.
-
-Enjoy exploring the Pizza Delivery demo! 🍕✨
-
