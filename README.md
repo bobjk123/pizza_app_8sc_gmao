@@ -131,7 +131,9 @@ Top-level layout (selected folders):
 - Tap a pizza tile to see details and macros.
 - Images load from the network when available and fall back to local assets if they fail.
 
-![App demo](docs/PizzaApp.mp4)
+<video src="docs/PizzaApp.mp4" controls width="640">
+	Your browser does not support the video tag. You can download the demo here: <a href="docs/PizzaApp.mp4">demo.mp4</a>
+</video>
 
 --
 
