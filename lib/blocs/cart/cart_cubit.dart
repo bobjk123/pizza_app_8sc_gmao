@@ -9,7 +9,7 @@ class CartCubit extends Cubit<CartState> {
 
   void addToCart(Pizza pizza) {
     final items = List<CartItem>.from(state.items);
-    final index = items.indexWhere((e) => e.pizza.pizzaId == pizza.pizzaId);
+    final index = items.indexWhere((e) => e.pizza.id == pizza.id);
     if (index >= 0) {
       final existing = items[index];
       items[index] = existing.copyWith(quantity: existing.quantity + 1);
@@ -21,13 +21,13 @@ class CartCubit extends Cubit<CartState> {
 
   void removeFromCart(Pizza pizza) {
     final items = List<CartItem>.from(state.items);
-    items.removeWhere((e) => e.pizza.pizzaId == pizza.pizzaId);
+    items.removeWhere((e) => e.pizza.id == pizza.id);
     emit(state.copyWith(items: items));
   }
 
   void changeQuantity(Pizza pizza, int quantity) {
     final items = List<CartItem>.from(state.items);
-    final index = items.indexWhere((e) => e.pizza.pizzaId == pizza.pizzaId);
+    final index = items.indexWhere((e) => e.pizza.id == pizza.id);
     if (index >= 0) {
       if (quantity <= 0) {
         items.removeAt(index);

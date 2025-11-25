@@ -25,6 +25,7 @@ class HomeScreen extends StatelessWidget {
     final double appBarIconSize = width < 600 ? 24 : (width < 1024 ? 26 : 30);
 
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.surface,
         title: Row(
@@ -91,6 +92,7 @@ class HomeScreen extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            // Use AspectRatio so image scales nicely across devices
                             ClipRRect(
                               borderRadius: const BorderRadius.vertical(
                                   top: Radius.circular(20)),
@@ -202,7 +204,9 @@ class HomeScreen extends StatelessWidget {
                                                   .primary,
                                               fontWeight: FontWeight.w700),
                                         ),
-                                        const SizedBox(width: 5),
+                                        const SizedBox(
+                                          width: 5,
+                                        ),
                                         Text(
                                           "\$${state.pizzas[i].price}.00",
                                           style: TextStyle(
@@ -230,9 +234,13 @@ class HomeScreen extends StatelessWidget {
                     );
                   });
             } else if (state is GetPizzaLoading) {
-              return const Center(child: CircularProgressIndicator());
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
             } else {
-              return const Center(child: Text("An error has occured..."));
+              return const Center(
+                child: Text("An error has occured..."),
+              );
             }
           },
         ),
