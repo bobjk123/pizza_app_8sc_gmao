@@ -131,7 +131,7 @@ Top-level layout (selected folders):
 - Tap a pizza tile to see details and macros.
 - Images load from the network when available and fall back to local assets if they fail.
 
-![Demo](docs/demo.gif)
+![Demo](https://github.com/bobjk123/pizza_app_8sc_gmao/blob/main/PizzaApp.gif)
 
 --
 
