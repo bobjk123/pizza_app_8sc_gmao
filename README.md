@@ -131,38 +131,10 @@ Top-level layout (selected folders):
 - Tap a pizza tile to see details and macros.
 - Images load from the network when available and fall back to local assets if they fail.
 
-Add a demo GIF to `docs/demo.gif` in the repository to appear here. Example Markdown to show the GIF:
-
-```markdown
-You can include a short demo video instead of a GIF. Place the video file at `docs/demo.mp4` (or another supported format).
-
-HTML5 video (preferred for repo-hosted video):
-
 ```html
-<video src="docs/demo.mp4" controls width="640">
-	Your browser does not support the video tag. You can download the demo here: <a href="docs/demo.mp4">demo.mp4</a>
+<video src="docs/PizzaApp.mp4" controls width="640">
+	Your browser does not support the video tag. You can download the demo here: <a href="docs/PizzaApp.mp4">demo.mp4</a>
 </video>
-```
-
-If you prefer to host the video externally (YouTube/Vimeo), use a linked thumbnail that points to the hosted video, for example:
-
-```markdown
-[![Watch the demo](docs/demo_thumb.png)](https://youtu.be/YOUR_VIDEO_ID)
-```
-
-Instructions to add a local demo video:
-
-1. Create a `docs/` folder in the repo if it doesn't exist.
-2. Add your `demo.mp4` file to `docs/` (keep it short, < 10-20MB recommended).
-3. Commit and push the file to the repository:
-
-```powershell
-git add docs/demo.mp4
-git commit -m "chore(docs): add demo video"
-git push origin main
-```
-
-Note: GitHub displays HTML5 `<video>` tags in README when viewing the repository on GitHub web, but very large video files are discouraged. Hosting on YouTube or embedding a thumbnail linked to the hosted video is often better for repo size and bandwidth.
 ```
 
 --
